@@ -1,117 +1,267 @@
+# Microsoft Purview Information Protection: Common Scenarios
 
+An interactive, single-page learning and design reference for Microsoft Purview Information Protection sensitivity labels.
 
-  <main class="wrap">
-    <section id="taxonomy">
-      <h2>The taxonomy model</h2>
-      <p>A sensitivity label is a single piece of metadata that travels with content and can carry <strong>visual markings</strong>, <strong>encryption</strong>, and <strong>user access controls</strong>.</p>
-      <ul class="taxonomy">
-        <li><span class="badge public">Public</span> Approved for release outside the organisation. No protection.</li>
-        <li><span class="badge general">General</span> Ordinary internal business content. The default label for most work.</li>
-        <li><span class="badge conf">Confidential</span> Damage if disclosed. Encrypted. Sublabels such as Internal Only and External Sharing are common.</li>
-        <li><span class="badge high">Highly Confidential</span> Severe damage if disclosed. Encrypted, tightly scoped, and often project-specific.</li>
-      </ul>
-      <p>Design the taxonomy around business language, not technical controls. Users should be able to choose an appropriate label based on its name and tooltip alone.</p>
-    </section>
+The page translates common business scenarios into practical label-design guidance, including classification, encryption, usage rights, content markings, auto-labelling, collaboration controls, policy settings, deployment risks, and licensing considerations.
 
-    <section id="howto">
-      <h2>How to use</h2>
-      <p>This guide is a self-contained HTML document. To view it as a styled page in a browser, use either of the following methods.</p>
+> **Important:** This project is a design and workshop reference, not a production configuration export. Microsoft Purview capabilities, portal experiences, licensing, and supported clients change over time. Validate every setting against current Microsoft documentation and test it in your own tenant before deployment.
 
-      <h3>Option 1: Download the page and open it directly</h3>
-      <ol>
-        <li>Open the GitHub page for this file.</li>
-        <li>Click <strong>Raw</strong> or use the browser’s Save Page As option.</li>
-        <li>Save it as <code>README.html</code> (not <code>.md</code>).</li>
-        <li>Open the file in a browser by double-clicking it, or use File → Open File…</li>
-      </ol>
+## What is included
 
-      <h3>Option 2: Download from the command line</h3>
-      <pre><code>curl -L -o README.html https://raw.githubusercontent.com/VPaulC/Information-protection-configuration/main/README.md</code></pre>
-      <p>Then open the file in any modern browser. On macOS you can do:</p>
-      <pre><code>open README.html</code></pre>
-      <p>On Windows PowerShell:</p>
-      <pre><code>start README.html</code></pre>
-      <p>On Linux:</p>
-      <pre><code>xdg-open README.html</code></pre>
+The guide covers 12 common scenarios:
 
-      <h3>Option 3: Serve it locally</h3>
-      <p>If you prefer to view it using a local web server:</p>
-      <pre><code>python -m http.server 8000</code></pre>
-      <p>Then open:</p>
-      <pre><code>http://localhost:8000/README.html</code></pre>
+1. Public and marketing material
+2. General internal business content
+3. Confidential internal-only content
+4. Confidential external sharing
+5. Highly confidential projects and M&A
+6. Personal, health, and payment data
+7. Email encryption scenarios
+8. Teams, SharePoint, and Microsoft 365 Group container labels
+9. Meetings and Teams chat
+10. Files at rest and auto-labelling
+11. Guest and external collaboration
+12. Label policy settings and governance
 
-      <div class="callout">
-        <strong>Tip:</strong> If the browser shows raw source text instead of the styled page, the file likely has the wrong extension. Rename it to <code>.html</code> and reopen it.
-      </div>
-    </section>
+It also includes:
 
-    <section id="s1">
-      <h2>Scenario 1 — Public</h2>
-      <p>Use <span class="badge public">Public</span> for content approved for release outside the organisation. This is content that should not be encrypted or restricted.</p>
-      <p>Examples: published marketing content, public web copy, recruitment content, public reports, and other approved external-facing communications.</p>
-    </section>
+- A practical four-tier taxonomy model
+- A complete example sensitivity-label set
+- Scenario filters by tier and workload
+- Keyword search
+- Expandable configuration guidance
+- A responsive summary table
+- Common deployment pitfalls
+- A five-question self-check quiz
+- A design worksheet for an export-controlled engineering scenario
+- A detailed model answer
+- Print and save-to-PDF support
+- Responsive layouts for desktop, tablet, and mobile
+- Light and dark colour-scheme support
+- Reduced-motion and keyboard-focus support
 
-    <section id="s2">
-      <h2>Scenario 2 — General</h2>
-      <p>Use <span class="badge general">General</span> for ordinary internal business content. This is usually the default label for documents and email.</p>
-      <p>Examples: internal project documents, meeting notes, team updates, and routine business communications.</p>
-    </section>
+## Suggested taxonomy
 
-    <section id="s3">
-      <h2>Scenario 3 — Confidential</h2>
-      <p>Use <span class="badge conf">Confidential</span> for information whose disclosure could cause real harm but is still appropriate for the broader workforce.</p>
-      <p>Typical examples: internal financials, pricing models, strategy documents, architecture details, and operational plans.</p>
-    </section>
+The reference uses the following illustrative model:
 
-    <section id="s4">
-      <h2>Scenario 4 — Confidential external sharing</h2>
-      <p>Use a confidential sublabel for named external recipients or partner organisations. This is the pattern for controlled disclosures to customers, suppliers, or alliance partners.</p>
-      <p>Grant access only to the specific external audience, with limited rights and an appropriate expiry period.</p>
-    </section>
+| Tier | Purpose | Typical protection |
+|---|---|---|
+| **Public** | Approved for external release | No encryption |
+| **General** | Ordinary internal business content | Marking only; recommended default |
+| **Confidential** | Disclosure could cause material harm | Encryption and controlled sharing |
+| **Highly Confidential** | Disclosure could cause severe, legal, or strategic harm | Restricted audiences, strong protection, and tighter governance |
 
-    <section id="s5">
-      <h2>Scenario 5 — Highly Confidential</h2>
-      <p>Use <span class="badge high">Highly Confidential</span> for sensitive matters where disclosure could cause severe business damage or regulatory exposure.</p>
-      <p>Examples: M&amp;A information, restructuring plans, litigation strategy, incident response, and restricted project data.</p>
-    </section>
+The detailed scenarios explain when sublabels may be appropriate, such as:
 
-    <section id="s6">
-      <h2>Scenario 6 — PII and payment data</h2>
-      <p>PII, payroll data, health records, national identifiers, and payment card data should be treated as high-risk and automatically identified wherever possible.</p>
-      <p>Use DLP and sensitive information types to detect this information early, then apply the appropriate confidentiality label and policy controls.</p>
-    </section>
+- `Confidential / Internal Only`
+- `Confidential / External Sharing`
+- `Confidential / Encrypt-Only`
+- `Highly Confidential / Project`
+- `Highly Confidential / Do Not Forward`
+- `Highly Confidential / Specific People`
+- `Highly Confidential / Restricted Personal Data`
 
-    <section id="s7">
-      <h2>Scenario 7 — Email-only controls</h2>
-      <p>Mail is a major risk surface. Two common email protection patterns are <strong>Encrypt-Only</strong> and <strong>Do Not Forward</strong>.</p>
-      <p>Use encryption for safe recipient-based sharing and use Do Not Forward for sensitive messages that must remain unreadable outside the recipient list.</p>
-    </section>
+## Technology
 
-    <section id="s8">
-      <h2>Scenario 8 — Containers</h2>
-      <p>Container labels define how a group, team, or site is governed. They influence privacy, guest access, external sharing, and default handling for files in the workspace.</p>
-      <p>Container labels do not replace file-level labelling; they work alongside it.</p>
-    </section>
+This project is intentionally self-contained:
 
-    <section id="s9">
-      <h2>Scenario 9 — Meetings and chat</h2>
-      <p>Meeting invites and chat should follow the same sensitivity model as documents and email. Labels can enforce meeting options, recording controls, lobby settings, and participant restrictions.</p>
-    </section>
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- No external libraries
+- No package manager
+- No build process
+- No server-side component
+- No telemetry or external data submission
 
-    <section id="s10">
-      <h2>Scenario 10 — Files at rest</h2>
-      <p>For existing SharePoint and OneDrive content, a service-side auto-labelling policy is the practical way to reach backlogged data.</p>
-      <p>Client-side labelling is useful for new content and user guidance, but service-side controls are needed to cover the existing estate.</p>
-    </section>
+Worksheet responses remain in the browser page and are not stored after the page is closed.
 
-    <section id="s11">
-      <h2>Scenario 11 — External collaboration</h2>
-      <p>Labels persist with files, so protection travels with the content even when shared outside the tenant. This is a key reason to keep the labelling model consistent and policy-driven.</p>
-    </section>
-  </main>
+## Run locally
 
-  <footer class="wrap">
-    Repository: <strong>VPaulC/Information-protection-configuration</strong>
-  </footer>
-</body>
-</html>
+1. Download or clone the repository.
+2. Open the HTML file directly in a modern browser.
+
+For example, if the page is named `index.html`:
+
+```text
+index.html
+```
+
+No installation or build step is required.
+
+For local HTTP testing, you can use any static web server. For example, with Python installed:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then open `http://localhost:8000` in your browser.
+
+## Publish with GitHub Pages
+
+1. Rename the supplied HTML file to `index.html` if required.
+2. Place `index.html` and this `README.md` in the repository root.
+3. Push the repository to GitHub.
+4. In the repository, open **Settings > Pages**.
+5. Under **Build and deployment**, choose **Deploy from a branch**.
+6. Select the appropriate branch and the repository root folder.
+7. Save the configuration.
+
+GitHub Pages can then serve the project as a static site.
+
+## Repository structure
+
+A minimal repository can use this structure:
+
+```text
+.
+├── index.html
+├── README.md
+└── LICENSE
+```
+
+## Interactive features
+
+### Search and filters
+
+Users can filter the scenario cards by:
+
+- Keyword
+- Label tier
+- Email
+- Teams and sites
+- Files at rest
+- Auto-labelling
+
+### Progressive disclosure
+
+Each scenario separates the business context from the recommended configuration. Users can consider the scenario first, then reveal the configuration guidance.
+
+### Self-check quiz
+
+The five-question quiz:
+
+- Tracks answered questions and score
+- Shows the correct answer
+- Explains why each alternative is unsuitable
+- Can be reset without reloading the page
+
+### Design worksheet
+
+The worksheet helps users design a sensitivity label by considering:
+
+- Label and sublabel name
+- User-facing tooltip
+- Scope
+- Encryption method
+- Access grant
+- Usage rights
+- Expiry and offline access
+- Content markings
+- Auto-labelling
+- Label policy settings
+- DLP and container controls
+- Deployment risk
+
+Use **Print / save my answers** to retain a completed worksheet.
+
+## Accessibility and responsive design
+
+The page includes:
+
+- Semantic headings, sections, forms, fieldsets, and labels
+- Keyboard-accessible controls
+- Visible focus indicators
+- ARIA attributes for expandable regions and status updates
+- Minimum touch-target sizing on smaller screens
+- Responsive navigation
+- Mobile card rendering for the wide summary table
+- `prefers-reduced-motion` support
+- Light and dark colour-scheme support
+- Print styles that reveal collapsed content
+
+## Design principles reflected in the guide
+
+The content follows several practical principles:
+
+- Use business language rather than technical control names.
+- Keep the taxonomy small and understandable.
+- Do not make an encrypting label the default.
+- Treat encryption as a targeted control because it can interrupt business processes.
+- Pilot across real clients, devices, applications, recipients, and file types.
+- Use simulation before enabling auto-labelling.
+- Keep container controls and file-level protection conceptually separate.
+- Scope restrictive labels to the users who need them.
+- Define ownership, review, recovery, and label-retirement processes.
+
+## Licensing
+
+Licensing is not calculated or enforced by this project.
+
+The guide notes that advanced capabilities may require Microsoft 365 E5, an eligible Microsoft Purview add-on, or an equivalent standalone licence. Examples include some automatic labelling capabilities, advanced classifiers, Endpoint DLP, and sensitivity labels for meetings.
+
+Confirm current entitlement for every user and workload included in the proposed design.
+
+## Security and privacy notes
+
+- The page runs entirely in the browser.
+- It does not transmit worksheet answers.
+- It does not persist worksheet answers after the browser tab is closed.
+- It does not implement Microsoft Purview configuration changes.
+- It does not connect to a Microsoft 365 tenant.
+- It should not be treated as legal, regulatory, export-control, or licensing advice.
+
+## Browser support
+
+Use a current version of a modern browser such as Microsoft Edge, Google Chrome, Mozilla Firefox, or Safari.
+
+The core content remains visible without JavaScript. JavaScript provides progressive enhancements such as filtering, accordions, quiz scoring, and worksheet controls.
+
+## Customisation
+
+Common customisation points include:
+
+- Organisation name and terminology
+- Label and sublabel names
+- Tooltips and user guidance
+- Colour palette
+- Scenario examples
+- Sensitive information types
+- Rights assignments
+- External-sharing assumptions
+- Licensing notes
+- Internal help links
+- Regulatory and industry context
+
+When customising the page, keep implementation-specific values clearly identified as examples until they have been validated in the target tenant.
+
+## Contributing
+
+Contributions are welcome where they improve:
+
+- Technical accuracy
+- Accessibility
+- Mobile usability
+- Scenario coverage
+- Clarity for business and technical audiences
+- Alignment with current Microsoft Purview documentation
+
+When submitting a change:
+
+1. Describe the scenario or issue addressed.
+2. Identify whether the change affects content, behaviour, accessibility, or styling.
+3. Include the Microsoft documentation used to validate product-specific claims.
+4. Test desktop, mobile, keyboard, print, and dark-mode behaviour where relevant.
+5. Avoid adding external dependencies unless there is a clear maintenance benefit.
+
+## Disclaimer
+
+Microsoft Purview evolves continuously. Product names, licensing, settings, supported file types, client behaviour, and administrative experiences may change.
+
+All examples in this project are illustrative. Validate the proposed configuration against current Microsoft documentation, organisational policy, applicable regulation, and the actual tenant and application estate before implementation.
+
+Microsoft, Microsoft 365, Microsoft Purview, Microsoft Teams, Microsoft SharePoint, Microsoft Entra, and related product names are trademarks of Microsoft Corporation. Other names may be trademarks of their respective owners.
+
+## Licence
+
+Add the licence that best fits your intended use. If you want broad reuse with attribution, consider including an MIT licence file. If the content is intended only for internal or controlled partner use, use an appropriate restricted-use notice instead.
